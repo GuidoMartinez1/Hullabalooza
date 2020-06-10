@@ -74,8 +74,8 @@ heavyMetal = aumentarPublicoMetalero.modificarEstadoAnimo "pesado"
 trashMetal :: Metal
 trashMetal = aumentarPublicoMetalero.modificarEstadoAnimo "basura"
 
-tocar :: Banda -> Festival -> Festival
-tocar banda festival= genero banda $ festival
+tocar :: Festival -> Banda -> Festival
+tocar festival banda= genero banda $ festival
 
 --PUNTO 3
 theStrokes :: Banda
@@ -88,7 +88,7 @@ fusionRara  = heavyMetal.pop
 
 suceder :: Festival -> Festival
 suceder festival = foldr ($) festival (map (genero) (bandasQueTocan festival))
-suceder' unFestival = foldl (flip tocar) unFestival (bandasQueTocan unFestival)
+suceder' unFestival = foldl (tocar) unFestival (bandasQueTocan unFestival)
 
 --PUNTO 5
 
