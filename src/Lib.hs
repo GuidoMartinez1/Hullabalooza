@@ -92,13 +92,15 @@ suceder festival = foldr ($) festival (map (genero) (bandasQueTocan festival))
 --PUNTO 5
 
 --criterios de clasificacion de bandas
-vendida :: Banda -> Bool
+type Clasificacion = Banda -> Bool
+
+vendida :: Clasificacion
 vendida banda = tieneMasDeTresDescripciones banda || tieneDescripcionVendida banda
 
-acustica :: Banda -> Bool
+acustica :: Clasificacion
 acustica = tocaAMasDe 55
 
-legendaria :: Banda -> Bool
+legendaria :: Clasificacion
 legendaria banda= tieneDescripcion "legendaria" banda && tocaAMasDe 40 banda
 
 tieneDescripcionVendida :: Banda -> Bool
@@ -113,3 +115,10 @@ tieneMasDeTresDescripciones = (>3).length.descripcion
 tocaAMasDe :: Int -> Banda -> Bool
 tocaAMasDe cantidad = (>cantidad).decibelesQueToca
 
+--PUNTO 6
+
+popularidad :: Banda -> [Clasificacion] -> Int
+popularidad banda  = (*100).length.(clasificacionesQueCumple banda)
+
+clasificacionesQueCumple :: Banda -> [Clasificacion] -> [Clasificacion]
+clasificacionesQueCumple banda clasificaciones = filter (\clasificacion -> clasificacion banda) clasificaciones 
