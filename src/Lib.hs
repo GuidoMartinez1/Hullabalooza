@@ -88,6 +88,7 @@ fusionRara  = heavyMetal.pop
 
 suceder :: Festival -> Festival
 suceder festival = foldr ($) festival (map (genero) (bandasQueTocan festival))
+suceder' unFestival = foldl (flip tocar) unFestival (bandasQueTocan unFestival)
 
 --PUNTO 5
 
