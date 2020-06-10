@@ -122,3 +122,24 @@ popularidad banda  = (*100).length.(clasificacionesQueCumple banda)
 
 clasificacionesQueCumple :: Banda -> [Clasificacion] -> [Clasificacion]
 clasificacionesQueCumple banda clasificaciones = filter (\clasificacion -> clasificacion banda) clasificaciones 
+
+--PUNTO 7
+{-Definir la función buenFest , que dado un festival y un conjunto de clasificaciones posibles
+dice si es un buen fest. Esto sucede cuando cronológicamente cada banda es más popular
+que la anterior, y además la popularidad total (la popularidad acumulada de sus bandas)
+supera los 1000 puntos.-}
+
+buenFest :: Festival -> [Clasificacion] -> Bool
+buenFest (Festival _ _ _ bandasQueTocan) clasificaciones = 
+        esMasPopularQueLaOtra bandasQueTocan clasificaciones && popularidadTototal bandasQueTocan clasificaciones > 1000
+
+esMasPopularQueLaOtra :: [Banda] -> [Clasificacion] -> Bool
+esMasPopularQueLaOtra [] _ = True
+esMasPopularQueLaOtra [unaBanda] _ = True
+esMasPopularQueLaOtra (unaBanda:otraBanda:bandas) clasificaciones= esMasPopular unaBanda otraBanda clasificaciones && esMasPopularQueLaOtra bandas clasificaciones
+
+esMasPopular :: Banda -> Banda -> [Clasificacion] -> Bool
+esMasPopular unaBanda otraBanda clasificaciones = popularidad unaBanda clasificaciones > popularidad otraBanda clasificaciones
+
+popularidadTototal :: [Banda] -> [Clasificacion] -> Int
+popularidadTototal bandas clasificaciones = sum.map (flip popularidad clasificaciones) $ bandas
