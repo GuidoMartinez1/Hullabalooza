@@ -143,3 +143,22 @@ esMasPopular unaBanda otraBanda clasificaciones = popularidad unaBanda clasifica
 
 popularidadTototal :: [Banda] -> [Clasificacion] -> Int
 popularidadTototal bandas clasificaciones = sum.map (flip popularidad clasificaciones) $ bandas
+
+--PUNTO 8 
+{-¿ Fueron de utilidad los conceptos de aplicación parcial y composición? Indicar donde se los
+utilizó y justificar su impacto en la solución.-}
+
+{-
+Fueron muy utiles en toda la resolución. Se utilizaron para el modelado del genero de las distintas bandas
+-}
+
+--PUNTO 9 
+
+{-¿ Sería posible que alguna de las listas fuera infinita y de todas maneras las funciones sigan
+funcionando correctamente? Justificar y ejemplificar.
+-}
+{-
+No seria posible que las funciones sigan funcionando correctamente, ya que  en el ejemplo de
+las clasificacioneQueCumplen se realiza un filtrado, y si la lista es infinita no terminaria nunca
+de filtrar
+-}
