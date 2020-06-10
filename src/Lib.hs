@@ -7,11 +7,11 @@ data Festival = Festival {
     lugarDondeSeRealiza :: String,
     cantidadPublico :: Int,
     estadoDeAnimo :: EstadoDeAnimo,
-    bandasQueTocan :: [String]
-} deriving (Show, Eq)
+    bandasQueTocan :: [Banda]
+} deriving (Show)
 
 hullabalooza :: Festival
-hullabalooza = Festival "Springfield" 20000 "indiferente" ["Miranda", "Los Redondos", "Metalica", "Soda"]
+hullabalooza = Festival "Springfield" 20000 "indiferente" [miranda, losRedondos, metalica, soda]
 
 data Banda = Banda {
     nombreBanda :: String,
@@ -83,3 +83,8 @@ theStrokes = Banda "The Strokes" ["suicidio asistido", "emocional", "linda"] 45 
 
 fusionRara :: Genero
 fusionRara  = heavyMetal.pop
+
+--PUNTO 4
+
+suceder :: Festival -> Festival
+suceder festival = foldr ($) festival (map (genero) (bandasQueTocan festival))
