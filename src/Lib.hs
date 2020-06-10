@@ -88,3 +88,28 @@ fusionRara  = heavyMetal.pop
 
 suceder :: Festival -> Festival
 suceder festival = foldr ($) festival (map (genero) (bandasQueTocan festival))
+
+--PUNTO 5
+
+--criterios de clasificacion de bandas
+vendida :: Banda -> Bool
+vendida banda = tieneMasDeTresDescripciones banda || tieneDescripcionVendida banda
+
+acustica :: Banda -> Bool
+acustica = tocaAMasDe 55
+
+legendaria :: Banda -> Bool
+legendaria banda= tieneDescripcion "legendaria" banda && tocaAMasDe 40 banda
+
+tieneDescripcionVendida :: Banda -> Bool
+tieneDescripcionVendida = tieneDescripcion "vendida"
+
+tieneDescripcion :: String-> Banda -> Bool
+tieneDescripcion nombre = elem nombre.descripcion
+
+tieneMasDeTresDescripciones :: Banda -> Bool
+tieneMasDeTresDescripciones = (>3).length.descripcion
+
+tocaAMasDe :: Int -> Banda -> Bool
+tocaAMasDe cantidad = (>cantidad).decibelesQueToca
+
