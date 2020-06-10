@@ -77,3 +77,9 @@ trashMetal = aumentarPublicoMetalero.modificarEstadoAnimo "basura"
 tocar :: Banda -> Festival -> Festival
 tocar banda festival= genero banda $ festival
 
+--PUNTO 3
+theStrokes :: Banda
+theStrokes = Banda "The Strokes" ["suicidio asistido", "emocional", "linda"] 45 fusionRara
+
+fusionRara :: Genero
+fusionRara  = heavyMetal.pop
